@@ -1,0 +1,34 @@
+<li href="#" class="list-group-item">
+  <div class="row">
+    <div>
+      <img
+        [src]="shippingCompany.image" class="img-fluid"
+        style="max-width: 60px; max-height: 48px;"
+        alt="">
+    </div>
+
+    <div class="col">
+
+      <div class="row">
+        <a href="#" class="col-4">{{ shippingCompany.name }}</a>
+        <span class="col-4"><b>{{ shippingCompany.phone }}</b></span>
+        <a href="#" class="col-4">
+          <i class="fab fa-whatsapp"></i>
+          {{ shippingCompany.phone }}
+        </a>
+      </div>
+
+      <div class="row">
+        <span class="col-4">{{ shippingCompany.street }}/{{ shippingCompany.postcode }}</span>
+        <span class="col-4">{{ shippingCompany.email }}</span>
+      </div>
+
+    </div>
+    <button type="button" class="btn btn-primary btn-rounded">
+      <i class="fas fa-edit"></i>
+    </button>
+    <button type="button" class="btn btn-danger btn-rounded ml-1">
+      <i class="fas fa-trash"></i>
+    </button>
+  </div>
+</li>
