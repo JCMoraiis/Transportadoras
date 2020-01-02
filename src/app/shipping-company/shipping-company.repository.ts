@@ -14,4 +14,8 @@ export class ShippingCompanyRepository {
   listShippingCompanies(): Observable<ShippingCompany[]> {
     return this.http.get<ShippingCompany[]>('http://localhost:3000/ShippingCompany');
   }
+
+  deleteShippingCompany(id: number) {
+    return this.http.delete('http://localhost:3000/ShippingCompany/' + id);
+  }
 }

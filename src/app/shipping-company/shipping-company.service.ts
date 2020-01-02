@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { ShippingCompany } from '../models/shippingCompany.model';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { ShippingCompanyRepository } from './shipping-company.repository';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShippingCompanyService {
+
+  deleteEvent = new Subject<ShippingCompany>();
 
   constructor(private shippingCompanyRepository: ShippingCompanyRepository) { }
 
@@ -26,5 +27,9 @@ export class ShippingCompanyService {
           return ShippingCompanyArray;
         })
       );
+  }
+
+  deleteShippingCompany(id: number) {
+    return this.shippingCompanyRepository.deleteShippingCompany(id);
   }
 }

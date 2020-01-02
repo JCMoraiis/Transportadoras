@@ -12,10 +12,15 @@ export class HomeComponent implements OnInit {
 
   shippingCompanies: ShippingCompany[];
 
-  constructor(private shippingCompanyService: ShippingCompanyService) {
-  }
+  constructor(private shippingCompanyService: ShippingCompanyService) { }
   ngOnInit() {
+    // inicializar dados na tela
     this.shippingCompanyService.listShippingCompanies().subscribe(data => this.shippingCompanies = data);
+
+    // atualizar array ao item ser removido do banco de dados
+    this.shippingCompanyService.deleteEvent.subscribe(item => {
+      this.shippingCompanies = this.shippingCompanies.filter(shippingCompany => shippingCompany.id !== item.id);
+    });
   }
 
 }
