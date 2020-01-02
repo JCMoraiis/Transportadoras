@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   constructor(private shippingCompanyService: ShippingCompanyService) {
   }
   ngOnInit() {
-    this.shippingCompanies = this.shippingCompanyService.getShippingCompanies();
+    this.shippingCompanyService.listShippingCompanies().subscribe(data => this.shippingCompanies = data);
   }
 
 }
