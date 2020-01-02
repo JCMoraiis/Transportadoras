@@ -1,5 +1,6 @@
 export class ShippingCompany {
   constructor(
+    public id: number,
     public name: string,
     public image: string,
     public email: string,
