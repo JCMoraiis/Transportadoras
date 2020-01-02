@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+
 import { ShippingCompany } from '../models/shippingCompany.model';
 
 @Component({
@@ -10,7 +11,7 @@ export class ShippingCompanyComponent implements OnInit {
 
   @Input() shippingCompany: ShippingCompany;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
   }
