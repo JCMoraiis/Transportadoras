@@ -1,42 +1,30 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+
 import { ShippingCompany } from '../models/shippingCompany.model';
+import { Observable } from 'rxjs';
+import { ShippingCompanyRepository } from './shipping-company.repository';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShippingCompanyService {
 
-  shippingCompanies: ShippingCompany[] = [
-    {
-      name: 'Xadrez - Rodoaéreo',
-      image: 'https://i.etsystatic.com/13221305/r/il/a22aa5/1217314060/il_570xN.1217314060_jha1.jpg',
-      email: 'qualidade@teste.com.br',
-      phone: '(81) 3499-8439',
-      modal: 'teste',
-      street: 'Rua Presidente Kennedy',
-      postcode: '40',
-      neighborhood: 'Peixinhos',
-      city: 'Olinda',
-      state: 'Pernambuco'
-    },
-    {
-      name: 'Blackhat',
-      image: 'https://www.brandcrowd.com/gallery/brands/pictures/picture14252643624297.png',
-      email: 'qualidade@teste.com.br',
-      phone: '(81) 3499-8439',
-      modal: 'teste',
-      street: 'Rua Solenya',
-      postcode: '75',
-      neighborhood: 'Peixinhos',
-      city: 'Olinda',
-      state: 'Pernambuco'
-    }
-  ];
+  constructor(private shippingCompanyRepository: ShippingCompanyRepository) { }
 
-  constructor() { }
-
-  getShippingCompanies(): ShippingCompany[] {
-    return this.shippingCompanies;
+  listShippingCompanies(): Observable<ShippingCompany[]> {
+    return this.shippingCompanyRepository.listShippingCompanies()
+      .pipe(
+        map((responseData) => {
+          const ShippingCompanyArray = [];
+          for (const key in responseData) {
+            if (responseData.hasOwnProperty(key)) {
+              ShippingCompanyArray.push({ ...responseData[key] });
+            }
+          }
+          return ShippingCompanyArray;
+        })
+      );
   }
-
 }
