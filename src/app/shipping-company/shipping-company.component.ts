@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { ShippingCompany } from '../models/shippingCompany.model';
+import { ShippingCompanyService } from './shipping-company.service';
 
 @Component({
   selector: 'app-shipping-company',
@@ -11,9 +12,16 @@ export class ShippingCompanyComponent implements OnInit {
 
   @Input() shippingCompany: ShippingCompany;
 
-  constructor() {}
+  constructor(private shippingCompanyService: ShippingCompanyService) {}
 
   ngOnInit() {
+  }
+
+  onDelete() {
+    const id = this.shippingCompany.id;
+    this.shippingCompanyService.deleteShippingCompany(id).subscribe(() => {
+      this.shippingCompanyService.deleteEvent.next(this.shippingCompany);
+    });
   }
 
 }
