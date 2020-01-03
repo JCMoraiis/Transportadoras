@@ -8,9 +8,15 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  isCreatingShippingCompany = false;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  onButton() {
+    this.isCreatingShippingCompany = !this.isCreatingShippingCompany;
   }
 
 }

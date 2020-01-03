@@ -1,5 +1,17 @@
-<nav class="navbar navbar-light bg-light pt-3 pb-3">
+<nav class="navbar navbar-light bg-light fixed-top pt-3 pb-3">
   <a class="navbar-brand">Transportadoras</a>
-  <button type="button" class="btn btn-success my-2 my-sm-0" [routerLink]="['/shippingCompanyForm']">Cadastre sua
-    transportadora</button>
+  <button
+    *ngIf="!isCreatingShippingCompany; else btnVoltar"
+    (click)="onButton()"
+    type="button"
+    class="btn btn-success my-2 my-sm-0"
+    [routerLink]="['/shippingCompanyForm']">Cadastre sua transportadora</button>
+
+  <ng-template #btnVoltar>
+    <button
+      type="button"
+      (click)="onButton()"
+      class="btn btn-success my-2 my-sm-0"
+      [routerLink]="['/home']">Voltar</button>
+  </ng-template>
 </nav>
