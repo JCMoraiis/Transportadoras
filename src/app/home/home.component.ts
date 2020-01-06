@@ -1,26 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { ShippingCompany } from '../models/shippingCompany.model';
 import { ShippingCompanyService } from '../shipping-company/shipping-company.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
-  shippingCompanies: ShippingCompany[];
+  private shippingCompanies: ShippingCompany[];
+  private shippingCompaniesSub: Subscription;
 
   constructor(private shippingCompanyService: ShippingCompanyService) { }
   ngOnInit() {
-    // inicializar dados na tela
-    this.shippingCompanyService.listShippingCompanies().subscribe(data => this.shippingCompanies = data);
+    this.shippingCompanyService.listShippingCompanies();
+    this.shippingCompaniesSub = this.shippingCompanyService.shippingCompaniesUpdated.subscribe(sc => this.shippingCompanies = sc);
+  }
 
-    // atualizar array ao item ser removido do banco de dados
-    this.shippingCompanyService.deleteEvent.subscribe(item => {
-      this.shippingCompanies = this.shippingCompanies.filter(shippingCompany => shippingCompany.id !== item.id);
-    });
+  ngOnDestroy() {
+    this.shippingCompaniesSub.unsubscribe();
   }
 
 }

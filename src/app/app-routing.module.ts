@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { ShippingCompanyFormComponent } from './shipping-company-form/shipping-company-form.component';
+import { ShippingCompanyFormComponent } from './shipping-company/shipping-company-form/shipping-company-form.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
