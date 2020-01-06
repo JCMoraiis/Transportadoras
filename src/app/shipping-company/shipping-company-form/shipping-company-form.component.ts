@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ShippingCompanyService } from '../shipping-company.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shipping-company-form',
@@ -12,7 +13,8 @@ export class ShippingCompanyFormComponent implements OnInit {
   shippingCompanyForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private shippingCompanyService: ShippingCompanyService) { }
+    private shippingCompanyService: ShippingCompanyService,
+    private router: Router) { }
 
   ngOnInit() {
     this.shippingCompanyForm = this.formBuilder.group({
@@ -43,7 +45,10 @@ export class ShippingCompanyFormComponent implements OnInit {
   }
 
   onCreate() {
-    console.log(this.shippingCompanyService.);
+    if (this.shippingCompanyForm.valid) {
+      this.shippingCompanyService.createShippingCompany(this.shippingCompanyForm.value);
+      this.router.navigate(['home']);
+    }
   }
 
 }
