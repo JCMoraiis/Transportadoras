@@ -1,1 +1,5 @@
-<app-shipping-company *ngFor="let shippingCompany of shippingCompanies" [shippingCompany]="shippingCompany"></app-shipping-company>
+<ul class="list-group">
+  <app-shipping-company
+    *ngFor="let shippingCompany of shippingCompanies"
+    [shippingCompany]="shippingCompany"></app-shipping-company>
+</ul>
