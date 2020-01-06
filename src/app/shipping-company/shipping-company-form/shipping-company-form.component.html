@@ -27,10 +27,18 @@
       <div class="col-3">
         <label for="company">Empresa</label>
         <input formControlName="company" type="text" class="form-control" id="company">
+        <p class="text-danger"
+          *ngIf="shippingCompanyForm.get('company').invalid && shippingCompanyForm.get('company').touched">
+          Digite o nome da empresa
+        </p>
       </div>
       <div class="col-3">
         <label for="phone">Celular</label>
         <input formControlName="phone" type="text" class="form-control" id="phone">
+        <p class="text-danger"
+          *ngIf="shippingCompanyForm.get('phone').invalid && shippingCompanyForm.get('phone').touched">
+          Digite o celular
+        </p>
       </div>
     </div>
 
@@ -42,6 +50,10 @@
         <option value="2">Aquaviário</option>
         <option value="3">Aéreo</option>
       </select>
+      <p class="text-danger"
+        *ngIf="shippingCompanyForm.get('modal').invalid && shippingCompanyForm.get('modal').touched">
+        Escolha o modal
+      </p>
     </div>
 
     <hr>
@@ -52,10 +64,18 @@
         <div class="col-6">
           <label for="street">Rua</label>
           <input formControlName="street" type="text" class="form-control" id="street">
+          <p class="text-danger"
+            *ngIf="shippingCompanyForm.get('street').invalid && shippingCompanyForm.get('street').touched">
+            Digite o nome da rua
+          </p>
         </div>
         <div class="col-2">
           <label for="houseNumber">Numero</label>
           <input formControlName="houseNumber" type="text" class="form-control" id=houseNumber>
+          <p class="text-danger"
+            *ngIf="shippingCompanyForm.get('houseNumber').invalid && shippingCompanyForm.get('houseNumber').touched">
+            Digite o número da casa
+          </p>
         </div>
         <div class="col-4">
           <label for="postCode">Cep</label>
@@ -67,14 +87,26 @@
         <div class="col-4">
           <label for="neighborhood">Bairro</label>
           <input formControlName="neighborhood" type="text" class="form-control" id="neighborhood">
+          <p class="text-danger"
+            *ngIf="shippingCompanyForm.get('neighborhood').invalid && shippingCompanyForm.get('neighborhood').touched">
+            Digite o nome do bairro
+          </p>
         </div>
         <div class="col-4">
           <label for="city">Cidade</label>
           <input formControlName="city" type="text" class="form-control" id="city">
+          <p class="text-danger"
+            *ngIf="shippingCompanyForm.get('city').invalid && shippingCompanyForm.get('city').touched">
+            Digite o nome da cidade
+          </p>
         </div>
         <div class="col-4">
           <label for="state">Estado</label>
           <input formControlName="state" type="text" class="form-control" id="state">
+          <p class="text-danger"
+            *ngIf="shippingCompanyForm.get('state').invalid && shippingCompanyForm.get('state').touched">
+            Digite o nome do estado
+          </p>
         </div>
       </div>
     </div>
@@ -86,7 +118,7 @@
       <div class="row">
         <div class="col">
           <label for="image">Imagem</label>
-          <input required type="text" class="form-control" id="image">
+          <input formControlName="image" type="text" class="form-control" id="image">
         </div>
       </div>
     </div>
