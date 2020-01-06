@@ -12,3 +12,11 @@ label {
 .row {
   margin-bottom: 16px;
 }
+
+input {
+  box-shadow: none !important;
+
+  &.ng-invalid.ng-touched {
+    border-color: red;
+  }
+}

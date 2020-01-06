@@ -1,34 +1,42 @@
 <div class="container pt-3 pb-3">
   <h4>Cadastrar</h4>
-  <form class="">
+  <form [formGroup]="shippingCompanyForm" class="">
 
     <!-- informações principais -->
     <div class="row">
       <div class="col">
-        <label for="nome">Nome</label>
-        <input required type="text" class="form-control" id="nome">
+        <label for="name">Nome</label>
+        <input formControlName="name" type="text" class="form-control" id="name">
+        <p class="text-danger"
+          *ngIf="shippingCompanyForm.get('name').invalid && shippingCompanyForm.get('name').touched">
+          Digite o nome
+        </p>
       </div>
     </div>
 
     <div class="row">
       <div class="col-6">
         <label for="exampleInputEmail1">Email</label>
-        <input required  type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+        <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp"
           placeholder="Enter email">
+          <p class="text-danger"
+            *ngIf="shippingCompanyForm.get('email').invalid && shippingCompanyForm.get('email').touched">
+            Digite o email
+          </p>
       </div>
       <div class="col-3">
-        <label for="nome">Empresa</label>
-        <input required type="text" class="form-control" id="empresa">
+        <label for="company">Empresa</label>
+        <input formControlName="company" type="text" class="form-control" id="company">
       </div>
       <div class="col-3">
-        <label for="nome">Celular</label>
-        <input required type="text" class="form-control" id="celular">
+        <label for="phone">Celular</label>
+        <input formControlName="phone" type="text" class="form-control" id="phone">
       </div>
     </div>
 
     <div class="form-group">
-      <label for="inputState">Modal</label>
-      <select required id="inputState" class="form-control">
+      <label for="modal">Modal</label>
+      <select formControlName="modal" id="modal" class="form-control">
         <option selected>Escolha...</option>
         <option value="1">Rodaviário</option>
         <option value="2">Aquaviário</option>
@@ -42,31 +50,31 @@
     <div class="form-group">
       <div class="row">
         <div class="col-6">
-          <label for="nome">Rua</label>
-          <input required type="text" class="form-control" placeholder="First name">
+          <label for="street">Rua</label>
+          <input formControlName="street" type="text" class="form-control" id="street">
         </div>
         <div class="col-2">
-          <label for="nome">Numero</label>
-          <input required type="text" class="form-control" placeholder="Last name">
+          <label for="houseNumber">Numero</label>
+          <input formControlName="houseNumber" type="text" class="form-control" id=houseNumber>
         </div>
         <div class="col-4">
-          <label for="nome">Cep</label>
-          <input required type="text" class="form-control" id="nome">
+          <label for="postCode">Cep</label>
+          <input formControlName="postCode" type="text" class="form-control" id="postCode">
         </div>
       </div>
 
       <div class="row">
         <div class="col-4">
-          <label for="nome">Estado</label>
-          <input type="text" class="form-control" id="nome">
+          <label for="neighborhood">Bairro</label>
+          <input formControlName="neighborhood" type="text" class="form-control" id="neighborhood">
         </div>
         <div class="col-4">
-          <label for="nome">Cidade</label>
-          <input required type="text" class="form-control" id="nome">
+          <label for="city">Cidade</label>
+          <input formControlName="city" type="text" class="form-control" id="city">
         </div>
         <div class="col-4">
-          <label for="nome">Bairro</label>
-          <input type="text" class="form-control" id="nome">
+          <label for="state">Estado</label>
+          <input formControlName="state" type="text" class="form-control" id="state">
         </div>
       </div>
     </div>
@@ -92,7 +100,7 @@
     <!-- botões  -->
     <div class="form-group pt-3">
       <button type="button" class="btn btn-outline-danger">Cancelar</button>
-      <button type="submit" class="btn btn-success ml-2" [routerLink]="['/routePath']">Salvar</button>
+      <button type="submit" class="btn btn-success ml-2" (click)="onCreate()">Salvar</button>
     </div>
   </form>
 </div>

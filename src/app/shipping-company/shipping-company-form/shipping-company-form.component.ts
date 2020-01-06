@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ShippingCompanyService } from '../shipping-company.service';
 
 @Component({
   selector: 'app-shipping-company-form',
@@ -7,9 +9,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShippingCompanyFormComponent implements OnInit {
 
-  constructor() { }
+  shippingCompanyForm: FormGroup;
+  constructor(
+    private formBuilder: FormBuilder,
+    private shippingCompanyService: ShippingCompanyService) { }
 
   ngOnInit() {
+    this.shippingCompanyForm = this.formBuilder.group({
+      name:   ['',
+          [
+              Validators.required,
+              Validators.minLength(4),
+              Validators.maxLength(40)
+          ]
+      ],
+      email:  ['',
+          [
+              Validators.required,
+              Validators.email
+          ]
+      ],
+      company:      ['', Validators.required],
+      phone:        ['', Validators.required],
+      modal:        ['', Validators.required],
+      street:       ['', Validators.required],
+      houseNumber:  ['', Validators.required],
+      postCode:     [''],
+      neighborhood: ['', Validators.required],
+      state:        ['', Validators.required],
+      city:         ['', Validators.required],
+      image:        [''],
+    });
+  }
+
+  onCreate() {
+    console.log(this.shippingCompanyService.);
   }
 
 }
