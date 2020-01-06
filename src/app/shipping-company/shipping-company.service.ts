@@ -21,6 +21,16 @@ export class ShippingCompanyService {
     });
   }
 
+  createShippingCompany(sc: ShippingCompany) {
+    // true: sc.id = ultimo id + 1 | false: sc.id = 1
+    sc.id = this.shippingCompanies.length ? this.shippingCompanies[this.shippingCompanies.length - 1].id + 1 : 1;
+
+    this.shippingCompanyRepository.createShippingCompany(sc).subscribe(() => {
+      this.shippingCompanies.push(sc);
+      this.shippingCompaniesUpdated.next([...this.shippingCompanies]);
+    });
+  }
+
   deleteShippingCompany(id: number) {
     this.shippingCompanyRepository.deleteShippingCompany(id).subscribe(() => {
       this.shippingCompanies = this.shippingCompanies.filter(sc => sc.id !== id);
