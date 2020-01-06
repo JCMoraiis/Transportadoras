@@ -6,15 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
-import { ShippingCompanyComponent } from './shipping-company/shipping-company.component';
-import { ShippingCompanyFormComponent } from './shipping-company-form/shipping-company-form.component';
+import { ShippingCompanyItemComponent } from './shipping-company/shipping-company-item/shipping-company-item.component';
+import { ShippingCompanyFormComponent } from './shipping-company/shipping-company-form/shipping-company-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    ShippingCompanyComponent,
+    ShippingCompanyItemComponent,
     ShippingCompanyFormComponent
   ],
   imports: [
