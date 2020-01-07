@@ -51,4 +51,8 @@ export class ShippingCompanyFormComponent implements OnInit {
     }
   }
 
+  onCancel() {
+    this.router.navigate(['home']);
+  }
+
 }
