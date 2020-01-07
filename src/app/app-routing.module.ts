@@ -5,8 +5,16 @@ import { ShippingCompanyFormComponent } from './shipping-company/shipping-compan
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
-  { path: 'home', component: HomeComponent },
-  { path: 'shippingCompanyForm', component: ShippingCompanyFormComponent }
+  {
+    path: 'home',
+    component: HomeComponent,
+    data: {buttonStatus: 'home'}
+  },
+  {
+    path: 'shippingCompanyForm',
+    component: ShippingCompanyFormComponent,
+    data: {buttonStatus: 'form'}
+  }
 ];
 
 @NgModule({
