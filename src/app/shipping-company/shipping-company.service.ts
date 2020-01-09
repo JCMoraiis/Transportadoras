@@ -21,12 +21,25 @@ export class ShippingCompanyService {
     });
   }
 
+  getShippingCompany(id: number): ShippingCompany {
+    return this.shippingCompanies.find(shippingCompany => shippingCompany.id === id);
+  }
+
   createShippingCompany(sc: ShippingCompany) {
     // true: sc.id = ultimo id + 1 | false: sc.id = 1
     sc.id = this.shippingCompanies.length ? this.shippingCompanies[this.shippingCompanies.length - 1].id + 1 : 1;
 
     this.shippingCompanyRepository.createShippingCompany(sc).subscribe(() => {
       this.shippingCompanies.push(sc);
+      this.shippingCompaniesUpdated.next([...this.shippingCompanies]);
+    });
+  }
+
+  updateShippingCompany(sc: ShippingCompany) {
+    this.shippingCompanyRepository.updateShippingCompany(sc).subscribe(() => {
+      // armazena o index do elemento do array, que tenha o id = ao id do elemento do parametro sc
+      const scIndex = this.shippingCompanies.indexOf( this.shippingCompanies.find( shippingCompany => shippingCompany.id === sc.id ) );
+      this.shippingCompanies[scIndex] = sc;
       this.shippingCompaniesUpdated.next([...this.shippingCompanies]);
     });
   }
