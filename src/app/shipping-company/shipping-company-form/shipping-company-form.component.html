@@ -132,7 +132,18 @@
     <!-- botões  -->
     <div class="form-group pt-3">
       <button type="button" class="btn btn-outline-danger" (click)="onCancel()">Cancelar</button>
-      <button type="button" class="btn btn-success ml-2" (click)="onCreate()" [disabled]="shippingCompanyForm.invalid">Salvar</button>
+      <button
+        *ngIf="!updating"
+        type="button"
+        class="btn btn-success ml-2"
+        (click)="onCreate()"
+        [disabled]="shippingCompanyForm.invalid">Salvar</button>
+      <button
+        *ngIf="updating"
+        type="button"
+        class="btn btn-success ml-2"
+        (click)="onUpdate()"
+        [disabled]="shippingCompanyForm.invalid">Atualizar</button>
     </div>
   </form>
 </div>
