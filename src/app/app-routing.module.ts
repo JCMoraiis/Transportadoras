@@ -14,6 +14,11 @@ const routes: Routes = [
     path: 'shippingCompanyForm',
     component: ShippingCompanyFormComponent,
     data: {buttonStatus: 'form'}
+  },
+  {
+    path: 'shippingCompanyForm/:id',
+    component: ShippingCompanyFormComponent,
+    data: {buttonStatus: 'form'}
   }
 ];
 
