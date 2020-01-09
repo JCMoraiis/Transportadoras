@@ -19,6 +19,10 @@ export class ShippingCompanyRepository {
     return this.http.post('http://localhost:3000/ShippingCompany', sc);
   }
 
+  updateShippingCompany(sc: ShippingCompany) {
+    return this.http.put('http://localhost:3000/ShippingCompany/' + sc.id, sc);
+  }
+
   deleteShippingCompany(id: number) {
     return this.http.delete('http://localhost:3000/ShippingCompany/' + id);
   }
