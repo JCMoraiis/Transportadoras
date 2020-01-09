@@ -10,7 +10,9 @@ import { Observable } from 'rxjs';
 export class ShippingCompanyRepository {
 
   constructor(private http: HttpClient) { }
-
+  getShippingCompany(id: number) {
+    return this.http.get<ShippingCompany>('http://localhost:3000/ShippingCompany/' + id);
+  }
   listShippingCompanies(): Observable<ShippingCompany[]> {
     return this.http.get<ShippingCompany[]>('http://localhost:3000/ShippingCompany');
   }
@@ -19,6 +21,9 @@ export class ShippingCompanyRepository {
     return this.http.post('http://localhost:3000/ShippingCompany', sc);
   }
 
+  updatedShippingCompany(shippingCompany: ShippingCompany) {
+    return this.http.put('http://localhost:3000/ShippingCompany/' + shippingCompany.id, shippingCompany);
+  }
   deleteShippingCompany(id: number) {
     return this.http.delete('http://localhost:3000/ShippingCompany/' + id);
   }

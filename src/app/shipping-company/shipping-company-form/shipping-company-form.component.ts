@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ShippingCompanyService } from '../shipping-company.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ShippingCompany } from 'src/app/models/shippingCompany.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-shipping-company-form',
@@ -11,13 +13,18 @@ import { Router } from '@angular/router';
 export class ShippingCompanyFormComponent implements OnInit {
 
   shippingCompanyForm: FormGroup;
+  public isEditable = false;
   constructor(
     private formBuilder: FormBuilder,
     private shippingCompanyService: ShippingCompanyService,
-    private router: Router) { }
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    ) { }
 
   ngOnInit() {
+
     this.shippingCompanyForm = this.formBuilder.group({
+      id: [],
       name:   ['',
           [
               Validators.required,
@@ -42,15 +49,29 @@ export class ShippingCompanyFormComponent implements OnInit {
       city:         ['', Validators.required],
       image:        [''],
     });
-  }
 
+    if (this.activatedRoute.snapshot.params.id) {
+      this.isEditable = true;
+      this.shippingCompanyService
+        .getShippingCompany(this.activatedRoute.snapshot.params.id)
+        .subscribe(r => {
+          this.shippingCompanyForm.setValue(r);
+        });
+    }
+  }
   onCreate() {
     if (this.shippingCompanyForm.valid) {
       this.shippingCompanyService.createShippingCompany(this.shippingCompanyForm.value);
       this.router.navigate(['home']);
     }
   }
-
+  onUpdate() {
+    if (this.shippingCompanyForm.valid) {
+      this.shippingCompanyService
+        .updatedShippingCompany(this.shippingCompanyForm.value, this.activatedRoute.snapshot.params.id);
+      this.router.navigate(['home']);
+    }
+  }
   onCancel() {
     this.router.navigate(['home']);
   }

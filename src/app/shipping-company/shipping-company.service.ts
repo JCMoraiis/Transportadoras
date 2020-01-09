@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { ShippingCompanyRepository } from './shipping-company.repository';
 import { ShippingCompany } from '../models/shippingCompany.model';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
+import { ShippingCompanyFormComponent } from './shipping-company-form/shipping-company-form.component';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,10 @@ export class ShippingCompanyService {
 
   private shippingCompanies: ShippingCompany[] = [];
   shippingCompaniesUpdated = new Subject<ShippingCompany[]>();
-
   constructor(private shippingCompanyRepository: ShippingCompanyRepository) { }
-
+  getShippingCompany(id: number) {
+    return this.shippingCompanyRepository.getShippingCompany(id);
+  }
   listShippingCompanies() {
     this.shippingCompanyRepository.listShippingCompanies().subscribe(sc => {
       this.shippingCompanies = sc;
@@ -30,7 +32,13 @@ export class ShippingCompanyService {
       this.shippingCompaniesUpdated.next([...this.shippingCompanies]);
     });
   }
-
+  updatedShippingCompany(shippingCompany: ShippingCompany, id: number) {
+    shippingCompany.id = id;
+    this.shippingCompanyRepository.updatedShippingCompany(shippingCompany)
+    .subscribe(() => {
+    this.listShippingCompanies();
+  });
+  }
   deleteShippingCompany(id: number) {
     this.shippingCompanyRepository.deleteShippingCompany(id).subscribe(() => {
       this.shippingCompanies = this.shippingCompanies.filter(sc => sc.id !== id);

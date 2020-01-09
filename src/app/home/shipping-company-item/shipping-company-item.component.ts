@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { ShippingCompany } from '../../models/shippingCompany.model';
-import { ShippingCompanyService } from '../shipping-company.service';
+import { ShippingCompanyService } from '../../shipping-company/shipping-company.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shipping-company-item',
@@ -9,17 +10,22 @@ import { ShippingCompanyService } from '../shipping-company.service';
   styleUrls: ['./shipping-company-item.component.scss']
 })
 export class ShippingCompanyItemComponent implements OnInit {
-
   @Input() shippingCompany: ShippingCompany;
 
-  constructor(private shippingCompanyService: ShippingCompanyService) {}
+  constructor(
+    private routes: Router,
+    private shippingCompanyService: ShippingCompanyService
+    ) {}
 
   ngOnInit() {
+  }
+
+  onEdit() {
+    this.routes.navigate(['/shippingCompanyForm', this.shippingCompany.id]);
   }
 
   onDelete() {
     const id = this.shippingCompany.id;
     this.shippingCompanyService.deleteShippingCompany(id);
   }
-
 }
