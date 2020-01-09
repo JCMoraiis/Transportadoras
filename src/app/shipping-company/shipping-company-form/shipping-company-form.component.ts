@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ShippingCompanyService } from '../shipping-company.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ShippingCompany } from 'src/app/models/shippingCompany.model';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-shipping-company-form',

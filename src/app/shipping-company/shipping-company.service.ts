@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { ShippingCompanyRepository } from './shipping-company.repository';
 import { ShippingCompany } from '../models/shippingCompany.model';
-import { Subject, Observable } from 'rxjs';
-import { ShippingCompanyFormComponent } from './shipping-company-form/shipping-company-form.component';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
