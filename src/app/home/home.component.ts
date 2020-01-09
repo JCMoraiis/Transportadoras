@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  private shippingCompanies: ShippingCompany[];
+  shippingCompanies: ShippingCompany[] = [];
   private shippingCompaniesSub: Subscription;
 
   constructor(private shippingCompanyService: ShippingCompanyService) { }

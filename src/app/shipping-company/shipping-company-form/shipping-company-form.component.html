@@ -1,5 +1,5 @@
 <div class="container pt-3 pb-3">
-  <h4>Cadastrar</h4>
+  <h4>{{this.activatedRoute.snapshot.params.id ? 'Atualizar' : 'Cadastrar'}}</h4>
   <form [formGroup]="shippingCompanyForm" class="">
 
     <!-- informações principais -->
@@ -46,7 +46,7 @@
       <label for="modal">Modal</label>
       <select formControlName="modal" id="modal" class="form-control">
         <option selected>Escolha...</option>
-        <option value="1">Rodaviário</option>
+        <option value="1">Rodoviário</option>
         <option value="2">Aquaviário</option>
         <option value="3">Aéreo</option>
       </select>
@@ -132,7 +132,8 @@
     <!-- botões  -->
     <div class="form-group pt-3">
       <button type="button" class="btn btn-outline-danger" (click)="onCancel()">Cancelar</button>
-      <button type="button" class="btn btn-success ml-2" (click)="onCreate()" [disabled]="shippingCompanyForm.invalid">Salvar</button>
+        <button [hidden]="this.isEditable" type="button" class="btn btn-success ml-2" (click)="onCreate()" [disabled]="shippingCompanyForm.invalid">Salvar</button>
+        <button [hidden]="!this.isEditable" type="button" class="btn btn-success ml-2" (click)="onUpdate()" [disabled]="shippingCompanyForm.invalid">Atualizar</button>
     </div>
   </form>
 </div>

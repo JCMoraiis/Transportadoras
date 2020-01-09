@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
-import { ShippingCompanyItemComponent } from './shipping-company/shipping-company-item/shipping-company-item.component';
+import { ShippingCompanyItemComponent } from './home/shipping-company-item/shipping-company-item.component';
 import { ShippingCompanyFormComponent } from './shipping-company/shipping-company-form/shipping-company-form.component';
 
 @NgModule({
